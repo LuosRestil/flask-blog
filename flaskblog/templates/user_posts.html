@@ -28,6 +28,11 @@
       </div>
     </article>
   {% endfor %} 
+  {% if posts.page != 1 %}
+    <a class="btn btn-outline-info mb-4" href="{{ url_for('users.user_posts', username=user.username, page=posts.page - 1) }}">
+      <
+    </a>
+  {% endif %}
   {% for page_num in posts.iter_pages(left_edge=1, right_edge=1,
   left_current=1, right_current=2) %} 
     {% if page_num %} 
@@ -44,5 +49,10 @@
       ... 
     {% endif %} 
   {% endfor %} 
+  {% if posts.page < posts.pages %}
+    <a class="btn btn-outline-info mb-4" href="{{ url_for('users.user_posts', username=user.username, page=posts.page + 1) }}">
+      >
+    </a>
+  {% endif %}
 {% endblock content %}
 
